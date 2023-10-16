@@ -1,2 +1,1 @@
-# pixel-anim
-Draw simple pixel animations
+# Draw simple pixel animations!
