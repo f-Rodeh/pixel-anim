@@ -1,19 +1,30 @@
 export { PixelBoard };
 
+const Cell = () => {
+  const cell = document.createElement("div");
+  cell.classList.add("cell");
+  cell.addEventListener("mouseenter", (e) => {
+    if (!e.buttons) return;
+    const color = e.altKey ? "transparent" : "black";
+    cell.style.backgroundColor = color;
+  });
+  return cell;
+};
+
 const Row = (itemCount) => {
-  const div = document.createElement("div");
-  div.classList.add("row");
+  const row = document.createElement("div");
+  row.classList.add("row");
   for (let i = 0; i < itemCount; i++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    div.appendChild(cell);
+    const cell = Cell();
+    row.appendChild(cell);
   }
-  return div;
+  return row;
 };
 
 const PixelBoard = (width, height) => {
   const element = document.createElement("div");
   element.classList.add("pixel-board");
+  element.setAttribute("ondragstart", "return false");
 
   for (let i = 0; i < height; i++) {
     const row = Row(width);
