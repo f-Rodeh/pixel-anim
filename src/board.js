@@ -3,11 +3,16 @@ export { PixelBoard };
 const Cell = () => {
   const cell = document.createElement("div");
   cell.classList.add("cell");
-  cell.addEventListener("mouseenter", (e) => {
-    if (!e.buttons) return;
-    const color = e.altKey ? "transparent" : "black";
+
+  const paint = (event) => {
+    if (event.type !== "click" && !event.buttons) return;
+    const color = event.altKey ? "transparent" : "black";
     cell.style.backgroundColor = color;
-  });
+  };
+
+  cell.addEventListener("mouseenter", (e) => paint(e));
+  cell.addEventListener("click", (e) => paint(e));
+
   return cell;
 };
 
