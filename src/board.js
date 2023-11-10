@@ -5,13 +5,13 @@ const Cell = () => {
   cell.classList.add("cell");
 
   const paint = (event) => {
-    if (event.type !== "click" && !event.buttons) return;
+    if (!event.buttons) return;
     const color = event.altKey ? "transparent" : "black";
     cell.style.backgroundColor = color;
   };
 
   cell.addEventListener("mouseenter", (e) => paint(e));
-  cell.addEventListener("click", (e) => paint(e));
+  cell.addEventListener("mousedown", (e) => paint(e));
 
   return cell;
 };
