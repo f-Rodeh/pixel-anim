@@ -4,8 +4,9 @@ const Row = (itemCount) => {
   const div = document.createElement("div");
   div.classList.add("row");
   for (let i = 0; i < itemCount; i++) {
-    const item = document.createElement("div");
-    div.appendChild(item);
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    div.appendChild(cell);
   }
   return div;
 };

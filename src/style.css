@@ -1,5 +1,23 @@
-body, html {
-  padding: 0; margin: 0;
+body,
+html {
+  padding: 0;
+  margin: 0;
   background-color: #111;
   color: #e6e6fa;
+}
+
+.pixel-board {
+  width: 200px;
+  height: 200px;
+  background-color: #e6e6fa;
+  display: grid;
+}
+
+.pixel-board > div {
+  display: flex;
+}
+
+.pixel-board .cell {
+  flex: 1;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
