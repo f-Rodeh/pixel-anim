@@ -26,15 +26,26 @@ const Row = (itemCount) => {
   return row;
 };
 
+const removeChildren = (node) => {
+  while (node.firstChild) {
+    node.removeChild(node.firstChild);
+  }
+};
+
+const populateBoard = (width, height, boardElement) => {
+  removeChildren(boardElement);
+  for (let i = 0; i < height; i++) {
+    const row = Row(width);
+    boardElement.appendChild(row);
+  }
+};
+
 const PixelBoard = (width, height) => {
   const element = document.createElement("div");
   element.classList.add("pixel-board");
   element.setAttribute("ondragstart", "return false");
 
-  for (let i = 0; i < height; i++) {
-    const row = Row(width);
-    element.appendChild(row);
-  }
+  populateBoard(width, height, element);
 
   function getSize() {
     return { width, height };
@@ -43,6 +54,7 @@ const PixelBoard = (width, height) => {
   function setSize(w, h) {
     width = w;
     height = h;
+    populateBoard(w, h, element);
   }
 
   return {
