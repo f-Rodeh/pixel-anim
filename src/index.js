@@ -8,3 +8,8 @@ document.body.append(layerTab.element);
 
 const drawingBoard = PixelBoard(12, 12);
 document.body.append(drawingBoard.element);
+
+const button = document.createElement('Button');
+button.textContent = 'Get Data'
+button.addEventListener('click', ()=>{console.log(drawingBoard.getData())});
+document.body.append(button)

@@ -6,6 +6,14 @@ html {
   color: #e6e6fa;
 }
 
+canvas {
+  display: block;
+  border: 1px solid white;
+  /* width: 200px;
+  height: 200px; */
+  /* background-color: #e6e6fa; */
+}
+
 .pixel-board {
   width: 200px;
   height: 200px;

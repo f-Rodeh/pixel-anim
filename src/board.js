@@ -1,13 +1,18 @@
 export { PixelBoard };
 
-const Cell = () => {
+let cellCounter = 0;
+let data = [];
+
+const Cell = (cellIndex) => {
   const cell = document.createElement("div");
   cell.classList.add("cell");
+  cell.dataset.i = cellIndex;
 
   const paint = (event) => {
     if (!event.buttons) return;
-    const color = event.altKey ? "transparent" : "black";
-    cell.style.backgroundColor = color;
+    const color = event.altKey ? [0,0,0,0] : [0,0,0,1];
+    cell.style.backgroundColor = `rgba(${color.toString()})`;
+    data[cellIndex] = color;
   };
 
   cell.addEventListener("mouseenter", (e) => paint(e));
@@ -20,7 +25,8 @@ const Row = (itemCount) => {
   const row = document.createElement("div");
   row.classList.add("row");
   for (let i = 0; i < itemCount; i++) {
-    const cell = Cell();
+    const cell = Cell(cellCounter++);    
+    data.push([0,0,0,0]);
     row.appendChild(cell);
   }
   return row;
@@ -33,6 +39,7 @@ const removeChildren = (node) => {
 };
 
 const populateBoard = (width, height, boardElement) => {
+  cellCounter = 0;
   removeChildren(boardElement);
   for (let i = 0; i < height; i++) {
     const row = Row(width);
@@ -57,9 +64,19 @@ const PixelBoard = (width, height) => {
     populateBoard(w, h, element);
   }
 
+  function getData(){
+    const imgData = new ImageData(width, height)
+    const flat = data.flat();
+    for (let i = 0; i < imgData.data.length; i++) {
+      imgData.data[i] = flat[i];
+    }
+    return imgData
+  }
+
   return {
     element,
     getSize,
     setSize,
+    getData
   };
 };
