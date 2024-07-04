@@ -11,5 +11,14 @@ document.body.append(drawingBoard.element);
 
 const button = document.createElement('Button');
 button.textContent = 'Get Data'
-button.addEventListener('click', ()=>{console.log(drawingBoard.getData())});
-document.body.append(button)
+button.addEventListener('click', ()=>{
+    console.log(drawingBoard.getData());
+    printCanvas(drawingBoard.getData())
+});
+document.body.append(button);
+
+const canvas = document.querySelector('canvas');
+const context = canvas.getContext("2d");
+function printCanvas(imageData){
+    context.putImageData(imageData,0,0);
+}

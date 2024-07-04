@@ -10,7 +10,7 @@ const Cell = (cellIndex) => {
 
   const paint = (event) => {
     if (!event.buttons) return;
-    const color = event.altKey ? [0,0,0,0] : [0,0,0,1];
+    const color = event.altKey ? [0,0,0,0] : [0,0,0,255];
     cell.style.backgroundColor = `rgba(${color.toString()})`;
     data[cellIndex] = color;
   };
@@ -65,12 +65,29 @@ const PixelBoard = (width, height) => {
   }
 
   function getData(){
-    const imgData = new ImageData(width, height)
+
+    // const flat = data.flat();
+    // console.log(flat)
+    // const arr = new Uint8ClampedArray(flat.length);
+
+    // // Fill the array with the same RGBA values
+    // for (let i = 0; i < arr.length; i += 4) {
+    //   arr[i + 0] = 255; // R value
+    //   arr[i + 1] = 0;; // G value
+    //   arr[i + 2] = 0;; // B value
+    //   arr[i + 3] = 255;; // A value
+    // }
+    
+    // // Initialize a new ImageData object
+    // let imageData = new ImageData(0,0,arr);
+    
+    const imageData = new ImageData(width, height)
     const flat = data.flat();
-    for (let i = 0; i < imgData.data.length; i++) {
-      imgData.data[i] = flat[i];
+    for (let i = 0; i < imageData.data.length; i++) {
+      imageData.data[i] = flat[i];
     }
-    return imgData
+
+    return imageData
   }
 
   return {
