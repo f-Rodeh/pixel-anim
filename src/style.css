@@ -1,3 +1,10 @@
+:root {
+  --bg: #111111;
+  --txt: #e6e6fa;
+  --surface: #333333;
+  --radius: 8px;
+}
+
 body,
 html {
   padding: 0;
@@ -8,7 +15,7 @@ html {
 
 canvas {
   display: block;
-  width: 200px;
+  width: 150px;
   background-color: #e6e6fa;
   image-rendering: pixelated;
 }
@@ -27,4 +34,37 @@ canvas {
 .pixel-board .cell {
   flex: 1;
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.frame-container {
+  width: fit-content;
+  background-color: var(--surface, gray);
+  padding: 24px;
+  border-radius: var(--radius, 8px);
+  display: grid;
+  gap: 24px;
+}
+
+.scrollable-frame-list {
+  height: 50vh;
+  position: relative;
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+  scroll-behavior: smooth;
+  gap: 24px;
+}
+
+.new-frame-bt {
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  background-color: var(--txt);
+  opacity: 0.5;
+}
+
+.new-frame-bt::after {
+  content: 'new frame';
+  color: var(--bg, black);
+  margin: auto;
 }
